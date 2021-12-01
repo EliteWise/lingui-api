@@ -1,15 +1,23 @@
-package fr.elite.lingui.service;
+package fr.lingui.service;
 
 import java.util.List;
 
 import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import fr.elite.lingui.entity.UserEntity;
-import fr.elite.lingui.repository.UserRepository;
+import fr.lingui.entity.UserEntity;
+import fr.lingui.repository.UserRepository;
 
-public class UserServiceImpl implements UserService {
+/*public class UserServiceImpl implements UserService {
 	
+	@Autowired
 	UserRepository userRepository;
+	
+	public UserServiceImpl() {
+		
+	}
 	
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -26,4 +34,4 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
-}
+}*/
