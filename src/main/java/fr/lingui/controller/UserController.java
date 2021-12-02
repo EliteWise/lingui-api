@@ -12,15 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.lingui.entity.UserEntity;
 import fr.lingui.repository.UserRepository;
-import fr.lingui.service.SequenceGeneratorService;
+import fr.lingui.util.IdGenerator;
 
 @RestController
 public class UserController {
 	
 	@Autowired
 	private UserRepository repository;
-	
-	private SequenceGeneratorService sequenceGenerator;
 	
 	@GetMapping("/")
 	public String index() {
@@ -30,7 +28,7 @@ public class UserController {
 	@PostMapping("/register")
 	public ResponseEntity<UserEntity> registerUser(UserEntity user) {
 		System.out.println(user.getName());
-		user.setId(sequenceGenerator.generateSequence(UserEntity.SEQUENCE_NAME));
+		user.setId(new IdGenerator().create());
 		repository.save(user);
 		return new ResponseEntity<UserEntity>(user, new HttpHeaders(), HttpStatus.OK);
 	}

@@ -21,7 +21,6 @@ public class UserEntity {
     public static final String SEQUENCE_NAME = "users_sequence";
 
 	@Id()
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Field(name = "name")
