@@ -11,7 +11,7 @@ public class Receiver {
 
 	@RabbitListener(queues = MessagingConfig.QUEUE)
 	public void receiveMessage(MessageEntity message) {
-		System.out.println(message.getContent());
+		System.out.println("Listener: " + message.getContent());
 	}
 	
 }

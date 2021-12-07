@@ -22,7 +22,7 @@ public class Publisher {
 	@PostMapping()
 	public String sendMessage(@RequestBody MessageEntity message) {
 		message.setMessageId(UUID.randomUUID().toString());
-		template.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, message);
-		return "Message sent.";
+		template.convertSendAndReceive(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, message);
+		return "Test";
 	}
 }
