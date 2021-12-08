@@ -32,6 +32,6 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
  
     @Override
     public Collection getMappingBasePackages() {
-        return Collections.singleton("com.baeldung");
+        return Collections.singleton("fr.lingui");
     }
 }
