@@ -1,22 +1,22 @@
 package fr.lingui.controller;
 
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.util.HtmlUtils;
 
-import fr.lingui.entity.Greeting;
-import fr.lingui.entity.Message;
+import fr.lingui.entity.MessageEntity;
 
 
 @Controller
 public class MessageController {
 
-	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
-	public String greeting(Message message) throws Exception {
-		System.out.println(message.getContent());
-		return new Greeting("Hello " + message.getMessageId()).getContent();
+	@MessageMapping("/message/{chatId}")
+	@SendTo("/broker")
+	public MessageEntity chatData(MessageEntity message, @DestinationVariable String chatId) throws Exception {
+		System.out.println(message);
+		message.setChatId(chatId);
+		return message;
 	}
 	
 }

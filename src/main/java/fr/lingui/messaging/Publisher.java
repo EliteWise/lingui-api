@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.lingui.config.MessagingConfig;
-import fr.lingui.entity.MessageEntity;
+import fr.lingui.entity.MessageEntityRabbitMQ;
 
 @RestController
 @RequestMapping("/send")
@@ -20,7 +20,7 @@ public class Publisher {
 	private RabbitTemplate template;
 	
 	@PostMapping()
-	public String sendMessage(@RequestBody MessageEntity message) {
+	public String sendMessage(@RequestBody MessageEntityRabbitMQ message) {
 		message.setMessageId(UUID.randomUUID().toString());
 		template.convertSendAndReceive(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, message);
 		return "Test";
